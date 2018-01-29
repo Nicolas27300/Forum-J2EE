@@ -11,12 +11,29 @@
         </h:head>
         <h:body>
             <h:form>
+                <ui:repeat var="categorie" value="#{categorieController.categories}">
+                    <p:fieldset legend="#{categorie.name}" style="margin-bottom:20px">
+                        <ui:repeat var="forum" value="#{categorie.forums}">
+                            <h:outputText value="#{forum.name}" />
+                            <hr/>
+                        </ui:repeat>
+                    </p:fieldset>
+                </ui:repeat>
                 <p:dock position="bottom">
-                    <p:menuitem value="Accueil" icon="img/home.png" url="#"/>
-                    <p:menuitem value="Inscription" icon="img/inscription.png" url="#"/>
+                    <p:menuitem value="Accueil" icon="img/home.png" url="/"/>
+                    <p:menuitem value="Inscription" icon="img/inscription.png" onclick="PF('inscription').show();"/>
                     <p:menuitem value="Connexion" icon="img/connexion.png" url="#"/>
                 </p:dock>
             </h:form>
+
+            <p:dialog header="Inscription" widgetVar="inscription" modal="true" height="178" draggable="false" resizable="false">
+                <h:panelGrid columns="2" cellpadding="5">
+                    Pseudo : <h:inputText value="#{membreController.pseudo}" />
+                    Mot de passe : <h:inputText value="#{membreController.password}" />
+                    Email : <h:inputText value="#{membreController.mail}" />
+                    <center><p:commandButton value="S'inscrire" actionListener="#{membreController.add}" /></center>
+                </h:panelGrid>
+            </p:dialog>  
         </h:body>
     </f:view>
 </html>

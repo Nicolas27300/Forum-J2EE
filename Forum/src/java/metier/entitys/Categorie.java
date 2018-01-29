@@ -15,9 +15,9 @@ public class Categorie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    String name;
+    private String name;
     @OneToMany
-    List<Forum> forums;
+    private List<Forum> forums;
 
     public Long getId() {
         return id;
