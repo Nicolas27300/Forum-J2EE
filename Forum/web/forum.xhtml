@@ -12,14 +12,12 @@
         <h:body>
             <ui:include src="dock.xhtml" />
             <h:form>
-                <ui:repeat var="categorie" value="#{categorieController.categories}">
-                    <p:fieldset legend="#{categorie.name}" style="margin-bottom:20px">
-                        <ui:repeat var="forum" value="#{categorie.forums}">
-                            <p:link href="forum.xhtml?id=#{forum.id}"><h:outputText value="#{forum.name}" /></p:link>
-                            <hr/>
-                        </ui:repeat>
-                    </p:fieldset>
-                </ui:repeat>
+                <p:fieldset legend="#{forumController.forum.name}" style="margin-bottom:20px">
+                    <ui:repeat var="topic" value="#{forumController.forum.topics}">
+                        <h:outputText value="#{topic.titre}" />
+                        <hr/>
+                    </ui:repeat>
+                </p:fieldset>
             </h:form>
         </h:body>
     </f:view>
