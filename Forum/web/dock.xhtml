@@ -9,7 +9,7 @@
         <p:dock position="bottom">
             <p:menuitem value="Accueil" icon="img/home.png" url="/"/>
             <p:menuitem value="Inscription" icon="img/inscription.png" onclick="PF('inscription').show();"/>
-            <p:menuitem value="Connexion" icon="img/connexion.png" url="#"/>
+            <p:menuitem value="Connexion" icon="img/connexion.png" onclick="PF('connexion').show();"/>
         </p:dock>
     </h:form>
     <p:growl id="message" showDetail="true">
@@ -20,6 +20,15 @@
                     Mot de passe : <p:password value="#{membreController.password}" />
                     Email : <p:inputText value="#{membreController.mail}" />
                     <center><p:commandButton value="S'inscrire" actionListener="#{membreController.add}" update="message" /></center>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+        <p:dialog header="Connexion" widgetVar="connexion" modal="true" height="148" draggable="false" resizable="false">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    Pseudo : <p:inputText value="#{membreController.pseudo}" />
+                    Mot de passe : <p:password value="#{membreController.password}" />
+                    <center><p:commandButton value="Connexion" actionListener="#{membreController.add}" update="message" /></center>
                 </h:panelGrid>
             </h:form>
         </p:dialog>  
