@@ -13,11 +13,26 @@
             <ui:include src="dock.xhtml" />
             <h:form>
                 <p:fieldset legend="#{forumController.forum.name}" style="margin-bottom:20px">
+                    <c:if test="#{loginController.logged}">
+                        <h:form>
+                            <p:commandButton value="Nouveau Topic" onclick="PF('addTopic').show();"/>
+                        </h:form>
+                    </c:if>
                     <ui:repeat var="topic" value="#{forumController.forum.topics}">
                         <h:outputText value="#{topic.titre}" />
                         <hr/>
                     </ui:repeat>
                 </p:fieldset>
+                <p:dialog header="Nouveau Topic" widgetVar="addTopic" modal="true" height="198" draggable="false" resizable="false">
+                    <h:form>
+                        #{topicController.setForum(forumController.forum)}
+                        <h:panelGrid columns="2" cellpadding="5">
+                            Sujet : <p:inputText value="#{topicController.titre}" required="true" />
+                            Message : <p:inputTextarea required="true" />
+                            <center><p:commandButton value="Créer le topic" actionListener="#{topicController.add}" update="message" /></center>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
             </h:form>
         </h:body>
     </f:view>

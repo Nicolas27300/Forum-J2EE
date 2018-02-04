@@ -8,16 +8,22 @@
     <h:form>
         <p:dock position="bottom">
             <p:menuitem value="Accueil" icon="img/home.png" url="/"/>
-            <p:menuitem value="Inscription" icon="img/inscription.png" onclick="PF('inscription').show();"/>
-            <p:menuitem value="Connexion" icon="img/connexion.png" onclick="PF('connexion').show();"/>
+            <c:if test="#{!loginController.logged}">
+                <p:menuitem value="Inscription" icon="img/inscription.png" onclick="PF('inscription').show();"/>
+                <p:menuitem value="Connexion" icon="img/connexion.png" onclick="PF('connexion').show();"/>
+            </c:if>
+            <c:if test="#{loginController.logged}">
+                <p:menuitem value="Déconnexion" icon="img/deconnexion.png" actionListener="#{loginController.deconnexion}" />
+            </c:if>
         </p:dock>
     </h:form>
     <p:growl id="message" showDetail="true">
-        <p:dialog header="Inscription" widgetVar="inscription" modal="true" height="178" draggable="false" resizable="false">
+        <p:dialog header="Inscription" widgetVar="inscription" modal="true" height="238" draggable="false" resizable="false">
             <h:form>
                 <h:panelGrid columns="2" cellpadding="5">
                     Pseudo : <p:inputText value="#{membreController.pseudo}" />
                     Mot de passe : <p:password value="#{membreController.password}" />
+                    Confirmer le mot de passe : <p:password value="#{membreController.password_confirm}" />
                     Email : <p:inputText value="#{membreController.mail}" />
                     <center><p:commandButton value="S'inscrire" actionListener="#{membreController.add}" update="message" /></center>
                 </h:panelGrid>
@@ -26,9 +32,9 @@
         <p:dialog header="Connexion" widgetVar="connexion" modal="true" height="148" draggable="false" resizable="false">
             <h:form>
                 <h:panelGrid columns="2" cellpadding="5">
-                    Pseudo : <p:inputText value="#{membreController.pseudo}" />
-                    Mot de passe : <p:password value="#{membreController.password}" />
-                    <center><p:commandButton value="Connexion" actionListener="#{membreController.add}" update="message" /></center>
+                    Pseudo : <p:inputText value="#{loginController.pseudo}" />
+                    Mot de passe : <p:password value="#{loginController.password}" />
+                    <center><p:commandButton value="Connexion" actionListener="#{loginController.connexion}" update="message" /></center>
                 </h:panelGrid>
             </h:form>
         </p:dialog>  

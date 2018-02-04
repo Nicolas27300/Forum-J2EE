@@ -78,6 +78,8 @@ public class MembreController implements Serializable {
         this.mail = mail;
     }
     
+    
+    
      public String encodeMd5(String mdp) {
         byte[] uniqueKey = mdp.getBytes();
         byte[] hash = null;

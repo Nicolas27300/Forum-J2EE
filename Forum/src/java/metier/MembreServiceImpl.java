@@ -18,8 +18,8 @@ public class MembreServiceImpl extends AbstracCrudServiceJPA<Membre> implements 
         List<Membre> membres = new ArrayList();
         try {
             this.open();
-            Query query = em.createQuery("SELECT m FROM Membre m WHERE m.pseudo :pseudo");
-            query.setParameter("membre", pseudo);
+            Query query = em.createQuery("SELECT m FROM Membre m WHERE m.pseudo = :pseudo");
+            query.setParameter("pseudo", pseudo);
             membres = query.getResultList();
         } finally {
             this.close();

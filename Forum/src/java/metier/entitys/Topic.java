@@ -22,6 +22,8 @@ public class Topic implements Serializable {
     private String titre;
     @OneToOne
     private Membre createur;
+    @OneToOne
+    private Forum fotum;
     @OneToMany
     private List<Post> posts;
     @Temporal(TemporalType.TIMESTAMP)
@@ -49,6 +51,14 @@ public class Topic implements Serializable {
 
     public void setCreateur(Membre createur) {
         this.createur = createur;
+    }
+
+    public Forum getFotum() {
+        return fotum;
+    }
+
+    public void setFotum(Forum fotum) {
+        this.fotum = fotum;
     }
 
     public List<Post> getPosts() {
