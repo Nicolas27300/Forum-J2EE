@@ -17,23 +17,26 @@
                         <h:form>
                             <p:commandButton value="Nouveau Topic" onclick="PF('addTopic').show();"/>
                         </h:form>
+                        <hr/>
                     </c:if>
                     <ui:repeat var="topic" value="#{forumController.forum.topics}">
-                        <h:outputText value="#{topic.titre}" />
+                        <p:link href="topic.xhtml"><h:outputText value="#{topic.titre}" /></p:link> par <h:outputText value="#{topic.createur.pseudo}" /> le <h:outputText value="#{topic.date_topic}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="GMT+1"/>
+                        </h:outputText>
                         <hr/>
                     </ui:repeat>
                 </p:fieldset>
-                <p:dialog header="Nouveau Topic" widgetVar="addTopic" modal="true" height="198" draggable="false" resizable="false">
-                    <h:form>
-                        #{topicController.setForum(forumController.forum)}
-                        <h:panelGrid columns="2" cellpadding="5">
-                            Sujet : <p:inputText value="#{topicController.titre}" required="true" />
-                            Message : <p:inputTextarea required="true" />
-                            <center><p:commandButton value="Créer le topic" actionListener="#{topicController.add}" update="message" /></center>
-                        </h:panelGrid>
-                    </h:form>
-                </p:dialog>
             </h:form>
+            <p:dialog header="Nouveau Topic" widgetVar="addTopic" modal="true" height="198" draggable="false" resizable="false">
+                <h:form>
+                    #{topicController.setForum(forumController.forum)}
+                    <h:panelGrid columns="2" cellpadding="5">
+                        Sujet : <p:inputText value="#{topicController.titre}" required="true" />
+                        Message : <p:inputTextarea required="true" />
+                        <center><p:commandButton value="Créer le topic" actionListener="#{topicController.add}" /></center>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
         </h:body>
     </f:view>
 </html>

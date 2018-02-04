@@ -23,7 +23,7 @@ public class Topic implements Serializable {
     @OneToOne
     private Membre createur;
     @OneToOne
-    private Forum fotum;
+    private Forum forum;
     @OneToMany
     private List<Post> posts;
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,11 +54,11 @@ public class Topic implements Serializable {
     }
 
     public Forum getFotum() {
-        return fotum;
+        return forum;
     }
 
-    public void setFotum(Forum fotum) {
-        this.fotum = fotum;
+    public void setFotum(Forum forum) {
+        this.forum = forum;
     }
 
     public List<Post> getPosts() {
