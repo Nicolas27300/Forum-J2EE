@@ -20,7 +20,7 @@
                         <hr/>
                     </c:if>
                     <ui:repeat var="topic" value="#{forumController.forum.topics}">
-                        <p:link href="topic.xhtml"><h:outputText value="#{topic.titre}" /></p:link> par <h:outputText value="#{topic.createur.pseudo}" /> le <h:outputText value="#{topic.date_topic}">
+                        <p:link href="topic.xhtml?id=#{topic.id}"><h:outputText value="#{topic.titre}" /></p:link> par <h:outputText value="#{topic.createur.pseudo}" /> le <h:outputText value="#{topic.date_topic}">
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="GMT+1"/>
                         </h:outputText>
                         <hr/>
@@ -32,7 +32,7 @@
                     #{topicController.setForum(forumController.forum)}
                     <h:panelGrid columns="2" cellpadding="5">
                         Sujet : <p:inputText value="#{topicController.titre}" required="true" />
-                        Message : <p:inputTextarea required="true" />
+                        Message : <p:inputTextarea required="true" value="#{topicController.message}" />
                         <center><p:commandButton value="Créer le topic" actionListener="#{topicController.add}" /></center>
                     </h:panelGrid>
                 </h:form>

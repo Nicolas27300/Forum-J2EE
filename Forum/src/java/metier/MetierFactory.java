@@ -6,6 +6,7 @@ public class MetierFactory {
     private static CategorieService categorieSrv = null;
     private static ForumService forumSrv = null;
     private static TopicService topicSrv = null;
+    private static PostService postSrv = null;
     
     public synchronized static MembreService getMembreService(){
         if (membreSrv == null){
@@ -33,5 +34,12 @@ public class MetierFactory {
             topicSrv = new TopicServiceImpl("ForumPU");
         }
         return MetierFactory.topicSrv;
+    }
+    
+    public synchronized static PostService getPostService(){
+        if (postSrv == null){
+            postSrv = new PostServiceImpl("ForumPU");
+        }
+        return MetierFactory.postSrv;
     }
 }
