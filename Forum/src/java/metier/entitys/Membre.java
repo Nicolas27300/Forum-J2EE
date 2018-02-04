@@ -16,7 +16,7 @@ public class Membre implements Serializable {
     private String pseudo;
     private String password;
     private String mail;
-    private boolean adminstrator;
+    private boolean administrator;
 
     public Long getId() {
         return id;
@@ -50,12 +50,12 @@ public class Membre implements Serializable {
         this.mail = mail;
     }
 
-    public boolean isAdminstrator() {
-        return adminstrator;
+    public boolean isAdministrator() {
+        return administrator;
     }
 
-    public void setAdminstrator(boolean adminstrator) {
-        this.adminstrator = adminstrator;
+    public void setAdministrator(boolean administrator) {
+        this.administrator = administrator;
     }
-      
+     
 }

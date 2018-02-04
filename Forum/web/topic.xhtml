@@ -20,7 +20,10 @@
                         <hr/>
                     </c:if>
                     <ui:repeat var="post" value="#{postController.topic.posts}">
-                        <h:outputText value="#{post.message} (par #{post.createur.pseudo})" />
+                        <h:outputText value="#{post.message} (par #{post.createur.pseudo}) " />
+                        <c:if test="#{loginController.membre.administrator}">
+                            <p:commandButton value="Supprimer" actionListener="#{postController.delete(post)}" />
+                        </c:if>
                         <hr/>
                     </ui:repeat>
                 </p:fieldset>

@@ -3,6 +3,7 @@ package client;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -59,6 +60,14 @@ public class PostController implements Serializable {
             Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void delete(Post post){
+        try {
+            this.postSrv.remove(post);
+        } catch (Exception ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public Topic getTopic() {
         return topic;
@@ -75,5 +84,5 @@ public class PostController implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-     
+   
 }
